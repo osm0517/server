@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyparser = require('body-parser');
-const router = require('./src/routers')
+const router = require('./src/routers');
+const crypto = require('./src/routers/crypto');
 
 const port = process.env.PORT || 5000;
 
@@ -13,6 +14,6 @@ app.use(bodyparser.urlencoded({ extended : true }));
 app.use("/", router);
 app.use(express.static('./src/public'));
 
-app.listen(port, () => {
+app.listen(port, async () => {
     console.log(`${port}에서 서버 가동`)
 })

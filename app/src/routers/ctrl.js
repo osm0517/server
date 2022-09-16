@@ -7,6 +7,8 @@ const conn = {  // mysql 접속 설정
     database: 'test220901'
 };
 
+const crypto = require('./crypto');
+
 let connection = mysql.createConnection(conn); // DB 커넥션 생성
 connection.connect();
 
@@ -36,9 +38,10 @@ const process = {
         
     },
 
-    signup : (req, res) => {
+    signup : async (req, res) => {
         const request = req.body;
-        let sql = `insert into member (id, pwd) values (${request.id}, ${request.pwd})`
+        const {hashPwd, salt} = await crypto.encryption.incode(request.pwd);
+        let sql = `insert into member (id, pwd, salt) values ('${request.id}', '${hashPwd}', '${salt}')`
         connection.query(sql, (err, results, fields) => {
             let answer = {};
             if (err) {
@@ -50,7 +53,7 @@ const process = {
                 answer.msg = results;
                 console.log(results);
             }
-            res.send(answer);
+            res.send(err);
         });
         // console.log(req.body);
     }
