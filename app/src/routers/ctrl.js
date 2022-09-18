@@ -15,33 +15,34 @@ connection.connect();
 const process = {
     login : (req, res) => {
         const request = req.body;
-        let sql = `select pwd from member where id = ${request.id}`
-        connection.query(sql, (err, results, fields) => {
+        let sql = `select * from member where id = ${request.id}`
+        connection.query(sql, async (err, results, fields) => {
             let answer = {};
-            if (err) {
+            if(err) {
                 answer.success = false;
                 answer.msg = "일치하는 아이디가 없습니다.";
                 console.log(err);
             }else{
-                if(request.pwd && results[0].pwd === request.pwd)answer.success = true;
-                else if(!request.pwd){
+                const pwd = results[0].pwd;
+                const {hashPwd} = await crypto.encryption.loginIncode(request.pwd, results[0].salt);
+                console.log(results);
+                if(pwd === hashPwd){
+                    answer.success = true;
+                    console.log("success");
+                }else{
                     answer.success = false;
-                    answer.msg = "비밀번호를 입력해주세요";
-                }
-                else{
-                    answer.success = false;
-                    answer.msg = "비밀번호가 일치하지 않습니다.";
+                    answer.msg = "비밀번호를 확인해주세요.";
+                    console.log("pwd error");
                 }
             }
-            res.send(answer);
         });
         
     },
 
     signup : async (req, res) => {
         const request = req.body;
-        const {hashPwd, salt} = await crypto.encryption.incode(request.pwd);
-        let sql = `insert into member (id, pwd, salt) values ('${request.id}', '${hashPwd}', '${salt}')`
+        const {pwd, salt} = await crypto.encryption.incode(request.pwd);
+        let sql = `insert into member (id, pwd, salt) values ('${request.id}', '${pwd}', '${salt}')`
         connection.query(sql, (err, results, fields) => {
             let answer = {};
             if (err) {

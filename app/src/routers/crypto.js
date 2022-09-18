@@ -26,8 +26,13 @@ const encryption = {
         
     },
 
-    decode : (hashPwd) => {
-
+    loginIncode : (inputPwd, salt) => {
+        return new Promise( async (resolve, reject) => {
+            crypto.pbkdf2(inputPwd, salt, 13672, 64, "sha512", (err, key) => {
+                if(err) reject(err);
+                resolve({hashPwd : key.toString("base64")});
+            })
+        })
     }
 }
 

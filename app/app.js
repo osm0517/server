@@ -15,5 +15,5 @@ app.use("/", router);
 app.use(express.static('./src/public'));
 
 app.listen(port, async () => {
-    console.log(`${port}에서 서버 가동`)
+    console.log(`${port}에서 서버 가동`);
 })
