@@ -57,6 +57,20 @@ const process = {
             res.send(err);
         });
         // console.log(req.body);
+    },
+
+    test : (req, res) => {
+        res.cookie('test', 'wpqkf', {
+            expires: new Date(Date.now() + 24 * 60 * 60),
+            httpOnly : true,
+            path : '/'
+        })
+        res.render('test')
+    },
+
+    cookie : (req, res) => {
+        
+        console.log(JSON.stringify( req.cookies.test));
     }
 }
 
