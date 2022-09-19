@@ -69,8 +69,10 @@ const process = {
     },
 
     cookie : (req, res) => {
-        
-        console.log(JSON.stringify( req.cookies.test));
+        const sql = ""
+        connection.query(sql, (err, results, fields) => {
+            
+        })
     }
 }
 
