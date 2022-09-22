@@ -1,43 +1,29 @@
 const express = require('express');
 const router = express.Router();
 
-
 const ctrl = require('./ctrl');
-router.get("/", (req, res) => {
-    
-    
-    res.render('test');
-    
-});
 
-router.post("/", (req, res) => {
-    // req.session.user = {
-    //     id : "wpqkf",
-    //     pwd : "w[qlfw[qkjf"
-    // };
-    // req.session.save((err) => {
-    //     if(err) throw err;
-    //     console.log("successed")
-    //     const SID = req.sessionID
-    //     console.log("SID => " + SID)
-    //     res.writeHead('Set-Cookie', `connect.id=${SID}; path=/`);
-    //     console.log("두구두구")
-    //     console.log(req.cookies)
-    // })
-    console.log("enrnenr");
-    res.setHeader("Set-Cookie", "test=wpqkf")
-    
-});
+//각종 테스트를 진행
+router.get("/view", (req, res) => {
+    res.sendStatus(500);
+})
 
-router.get("/test", (req, res) => {
-    res.send("dd")
-});
+//가장 처음 들어오는 메인 화면
+router.get("/", ctrl.processing.main);
 
-router.post("/login", ctrl.process.login);
+//로그인 후 메인 화면으로 이동
+router.get("/login", ctrl.processing.loginmain);
 
-router.post("/signup", ctrl.process.signup);
+//로그인
+router.post("/login", ctrl.processing.login);
 
-router.get("/cookie", ctrl.process.test);
+//회원가입
+router.post("/signup", ctrl.processing.signup);
 
-router.post("/cookie", ctrl.process.cookie);
+//refresh token을 사용해서 access token을 발급
+router.post("/refresh", ctrl.token.refresh);
+
+//access 유효성 검사
+router.get("/user", ctrl.authenticateAccessToken, ctrl.token.authenticate);
+
 module.exports = router;

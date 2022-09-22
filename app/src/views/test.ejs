@@ -8,14 +8,23 @@
 </head>
 <body>
     <p> testing </p>
-    <input type="text" id="value"/>
-    <div style="background-color: black; 
-    width : 50px; height:30px;" id="button"> button </div>
+    <input type="text" id="id"/>
+    <input type="text" id="pwd"/>
+    <div style="background-color: blue; 
+    width : 50px; height:30px;" id="login"> button </div>
     <script>
-        document.getElementById('button').addEventListener('click', () => {
+        document.getElementById('login').addEventListener('click', () => {
             console.log("testing");
-            fetch("http://localhost:5000/", {
-                method : "POST"
+            console.log(document.getElementById('id').value);
+            console.log(document.getElementById('pwd').value);
+            fetch("http://localhost:5000/login", {
+                method : "POST",
+                body : {
+                    
+                    'id':"2209171926",
+                    'pwd':"sungmin123"
+                }
+                
             })
         })
     </script>
