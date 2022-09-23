@@ -1,31 +1,31 @@
 import './App.css';
-import React, {useState} from 'react';
+import React from 'react';
+import Nav from './component/Nav/Nav';
+import Main from './component/Main/Main';
+import Login from './component/Login/Login';
+
+import {BrowserRouter, Routes, Route, Switch, Link } from 'react-router-dom';
 
 function App() {
-  const [id, setId] = useState("");
-  const [pwd, setPwd] = useState("");
-
-  const login = (req, res) => {
-    fetch("http://localhost:5000/test", {
-      method : "POST"
-    }).then( res=> res.json())
-    .then(json => console.log(json))
-    .catch(err => console.log(err));
-  }
+  
   return (
-    <div className="App">
-      <input placeholder='id' className='id-div'
-      onChange={ (e)=> {
-        setId(e.target.value);
-      }}/><br/>
-      <input placeholder='pwd' className='pwd-div'
-      onChange={ (e)=> {
-        setPwd(e.target.value);
-      }}/>
-      <div className='button' 
-      onClick={ login }>로그인</div>
-      <div className='button'>회원가입</div>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        {/* <Switch> */}
+          <div className='login-div'>
+            <Link to = "login">
+              <span className='auth'> Login </span>
+            </Link>
+            <span className='auth'> signup </span>
+          </div>
+          <Nav />
+          <Routes>
+            <Route path='/login' element={<Login/>}/>
+          </Routes>
+        {/* </Switch> */}
+      </div>
+    </BrowserRouter>
+    
   );
 }
 
