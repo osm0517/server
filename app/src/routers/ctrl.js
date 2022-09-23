@@ -110,7 +110,7 @@ const processing = {
     },
 
     main : (req, res) => {
-        res.send("main");
+        res.send("test")
     },
     loginmain : (req, res) => {
         res.send("loginmain");

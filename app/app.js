@@ -6,6 +6,7 @@ const crypto = require('./src/routers/crypto');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
+const cors = require('cors');
 
 const options = {  // mysql 접속 설정
     host: 'localhost',
@@ -36,6 +37,7 @@ app.use(session({
     },
     
 }))
+app.use(cors());
 app.use("/", router);
 app.use(express.static('./src/public'));
 

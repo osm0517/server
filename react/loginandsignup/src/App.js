@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useState} from 'react';
 
 function App() {
+  const [id, setId] = useState("");
+  const [pwd, setPwd] = useState("");
+
+  const login = (req, res) => {
+    fetch("http://localhost:5000/test", {
+      method : "POST"
+    }).then( res=> res.json())
+    .then(json => console.log(json))
+    .catch(err => console.log(err));
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input placeholder='id' className='id-div'
+      onChange={ (e)=> {
+        setId(e.target.value);
+      }}/><br/>
+      <input placeholder='pwd' className='pwd-div'
+      onChange={ (e)=> {
+        setPwd(e.target.value);
+      }}/>
+      <div className='button' 
+      onClick={ login }>로그인</div>
+      <div className='button'>회원가입</div>
     </div>
   );
 }

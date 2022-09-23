@@ -4,8 +4,9 @@ const router = express.Router();
 const ctrl = require('./ctrl');
 
 //각종 테스트를 진행
-router.get("/view", (req, res) => {
-    res.sendStatus(500);
+router.post("/test", (req, res) => {
+    const request = req.body;
+    res.redirect('/')
 })
 
 //가장 처음 들어오는 메인 화면
