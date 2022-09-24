@@ -21,6 +21,7 @@ function App() {
           <Nav />
           <Routes>
             <Route path='/login' element={<Login/>}/>
+            <Route path='/view/:type' element={<Main/>}/>
           </Routes>
         {/* </Switch> */}
       </div>

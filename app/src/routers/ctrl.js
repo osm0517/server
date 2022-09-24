@@ -114,6 +114,17 @@ const processing = {
     },
     loginmain : (req, res) => {
         res.send("loginmain");
+    },
+    view : (req, res) => {
+        const parameter = req.params;
+        const sql = `select * from ${parameter.type}`;
+        connection.query(sql, (err, results, fields) => {
+            if(err) console.log(err);
+            else{
+                console.log("success");;
+                res.send(results);
+            }
+        })
     }
 }
 const token = {

@@ -27,4 +27,6 @@ router.post("/refresh", ctrl.token.refresh);
 //access 유효성 검사
 router.get("/user", ctrl.authenticateAccessToken, ctrl.token.authenticate);
 
+//상의 정보 받아오기
+router.get("/view/:type", ctrl.processing.view);
 module.exports = router;

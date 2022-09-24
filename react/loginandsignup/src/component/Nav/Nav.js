@@ -6,7 +6,7 @@ function Nav() {
 
     return(
         <div className="nav">
-            <Link to= '/top'>
+            <Link to= '/view/top'>
                 <span className="list"> 상의 </span>
             </Link>
             <span className="list"> 하의 </span>
