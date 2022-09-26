@@ -29,4 +29,10 @@ router.get("/user", ctrl.authenticateAccessToken, ctrl.token.authenticate);
 
 //상의 정보 받아오기
 router.get("/view/:type", ctrl.processing.view);
+
+//상의 이미지 받아오기
+// router.get("/image/:type", ctrl.processing.image);
+
+//아이디 중복 확인
+router.get("/identify/:id", ctrl.processing.identify);
 module.exports = router;

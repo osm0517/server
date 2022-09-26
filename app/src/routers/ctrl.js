@@ -1,5 +1,6 @@
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 require('dotenv').config();
 
 const conn = {  // mysql 접속 설정
@@ -121,10 +122,80 @@ const processing = {
         connection.query(sql, (err, results, fields) => {
             if(err) console.log(err);
             else{
-                console.log("success");;
+                console.log("success");
                 res.send(results);
             }
         })
+    },
+    //테스트를 위해서 로컬에 있는 파일에 이미지를 불러올 것
+    //테스트를 위한 것이기 때문에 이미지를 분류하지 않았음.
+    image : (req, res) => {
+        const type = req.params.type;
+        const imageName = [];
+        switch (type) { // switch문을 사용해서 모든 카테고리를 나눌 수 있도록 할 것
+            case "top":
+                const sql = `select * from ${type}`;
+                connection.query(sql, (err, results, fields) => {
+                    if(err) console.log("image 요청 중 에러 =>" + err);
+                    else{
+                        console.log("success");
+                        //sql 요청으로 얻은 값 중 아이디만을 추출하여
+                        //map 함수를 사용해서 array형식으로 저장
+                        results.map(result => imageName.push(result.id))
+                        try {
+                            //fs를 사용해서 상대경로로 설정시 에러가 발생함
+                            imageName.map(image => fs.readFileSync(`/image/${image}.jpeg`),
+                            (err, data) => {
+                                if(err) console.log(err);
+                                else{
+                                    console.log("과연")
+                                    console.log(data)
+                                }
+                            })
+                        } catch (err) {
+                            console.log("fs를 사용 중 에러가 발생 => " + err);
+                        }
+                        
+                    }
+                })
+                break;
+        
+            default:
+                fs.readFileSync("../public/image/testTop"), (err ,data) => {
+                    res.writeHead(200, { "Context-Type": "image/jpg" });//보낼 헤더를 만듬                
+                    res.write(data);   //본문을 만들고                
+                    res.end();  //클라이언트에게 응답을 전송한다
+                }
+                break;
+        }
+    },
+    identify : (req, res) => {
+        const id = req.params.id;
+        const sql = `select count(*) from member where id = '${id}'`;
+        connection.query(sql, (err, results, fields) => {
+            if(err) {
+                console.log("identify err => " + err);
+                res.send({
+                    success : false,
+                    msg : "identify err => " + err
+                })
+            }else{
+                if(results > 0) {
+                    console.log(results);
+                    res.send({
+                        success : false,
+                        msg : "중복된 아이디가 발견"
+                    })
+                }else{
+                    console.log("중복된 아이디 미발견");
+                    res.send({
+                        success : true,
+                        msg : "중복된 아이디 미발견"
+                    })
+                }
+            }
+        })
+        
     }
 }
 const token = {

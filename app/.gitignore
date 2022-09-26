@@ -1,2 +1,4 @@
 /node_modules
 /.env
+# 이미지가 넘어가면 너무 헤비해져서 안넘김
+/src/public/image
