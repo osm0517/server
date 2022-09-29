@@ -9,9 +9,15 @@ function Nav() {
             <Link to= '/view/top'>
                 <span className="list"> 상의 </span>
             </Link>
-            <span className="list"> 하의 </span>
-            <span className="list"> 악세사리 </span>
-            <span className="list"> 뷰티 </span>
+            <Link to= '/view/bottom'>
+                <span className="list"> 하의 </span>
+            </Link>
+            <Link to= '/view/accessories'>
+                <span className="list"> 악세사리 </span>
+            </Link>
+            <Link to= '/view/beauty'>
+                <span className="list"> 뷰티 </span>
+            </Link>
             <div className="nav-button">
                 <div />
                 <div />

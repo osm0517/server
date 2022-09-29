@@ -35,7 +35,10 @@ function Main({match}) {
     return (
         <div className="main-div">
             <div className="text-div title">{ type } </div>
-            { imageRender }
+            <div className="text-all">
+                { imageRender }
+            </div>
+            
         </div>
     )
 }
