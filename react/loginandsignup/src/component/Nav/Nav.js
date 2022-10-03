@@ -6,18 +6,10 @@ function Nav() {
 
     return(
         <div className="nav">
-            <Link to= '/view/top'>
-                <span className="list"> 상의 </span>
-            </Link>
-            <Link to= '/view/bottom'>
-                <span className="list"> 하의 </span>
-            </Link>
-            <Link to= '/view/accessories'>
-                <span className="list"> 악세사리 </span>
-            </Link>
-            <Link to= '/view/beauty'>
-                <span className="list"> 뷰티 </span>
-            </Link>
+            <span ><a className="list" href="/view/top">상의</a></span>
+            <span ><a className="list" href="/view/bottom">하의</a></span>
+            <span ><a className="list" href="/view/accessories">악세사리</a></span>
+            <span ><a className="list" href="/view/beauty">뷰티</a></span>
             <div className="nav-button">
                 <div />
                 <div />

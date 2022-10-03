@@ -1,43 +1,62 @@
 .main-div{
     /* border: 2px solid black;
     border-radius: 4px; */
-    margin: 0 auto;
     width: 80%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 20px;
 }
-
 .main-div .text-all {
     width: 100%;
     border: 2px solid black;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.text-div{
-    border: 2px solid black;
-    border-radius: 4px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: 60%;
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .title{
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .clothes-div{
     border: 2px solid black;
     border-radius: 5px;
     margin: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-rows: 0.5fr 2fr 0.1fr;
 }
 
 .clothes-div .clothes-image{
-    height: 60%;
+    height: 100%;
+    width: 100%;
+}
+
+.clothes-div .clothes-name{
+    text-align: center;
+    font-weight: bold;
+}
+
+.clothes-inpormation{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+#review{
+    margin-top: -15%;
+    margin-bottom: -30%;
+}
+
+#buy{
+    margin-bottom: -10%;
+}
+
+#like-btn{
+    width: 0.8rem;
 }
