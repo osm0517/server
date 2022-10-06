@@ -21,4 +21,6 @@ const process = {
 
 }
 
-module.exports = process;
+module.exports = {
+    process,
+};

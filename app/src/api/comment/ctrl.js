@@ -1,24 +1,25 @@
 const process = {
-    login : (req, res) => {
+    //댓글 쓰기
+    write : (req, res) => {
 
     },
 
-    signup : (req, res) => {
-
-    },
-
+    //댓글 지우기
     delete : (req, res) => {
 
     },
 
-    change : (req, res) => {
+    //대댓글 달기
+    nested : (req, res) => {
 
     },
 
-    search : (req, res) => {
+    //신고하기
+    report : (req, res) => {
 
     },
+
 
 }
 
-module.exports = process;
+module.exports = {process};

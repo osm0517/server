@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const bodyparser = require('body-parser');
-const router = require('./src/routers');
 const crypto = require('./src/routers/crypto');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -40,7 +39,6 @@ app.use(session({
     
 }))
 app.use(cors());
-app.use("/", router);
 app.use(express.static('./src/public'));
 
 

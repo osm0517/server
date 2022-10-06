@@ -1,24 +1,12 @@
 const process = {
-    login : (req, res) => {
+    list : (req, res) => {
 
     },
 
-    signup : (req, res) => {
-
-    },
-
-    delete : (req, res) => {
-
-    },
-
-    change : (req, res) => {
-
-    },
-
-    search : (req, res) => {
+    detail : (req, res) => {
 
     },
 
 }
 
-module.exports = process;
+module.exports = {process};
