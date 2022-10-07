@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const ctrl = require('./ctrl');
+const ctrl =  require('./ctrl');
 
 //로그인
 router.post("/login", ctrl.process.login);
@@ -16,4 +16,5 @@ router.post("/change/:type", ctrl.process.change);
 //비밀번호 찾기
 router.get("/search/password", ctrl.process.search);
 
-module.exports = router;
+module.exports = router
+export {}

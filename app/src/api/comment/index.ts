@@ -14,3 +14,4 @@ router.post("/write/nested", ctrl.process.nested);
 router.post("/report", ctrl.process.report);
 
 module.exports = router;
+export{}

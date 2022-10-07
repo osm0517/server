@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const bodyparser = require('body-parser');
-const crypto = require('./src/routers/crypto');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
@@ -16,7 +15,7 @@ const options = {  // mysql 접속 설정
 };
 const sessionStore = new MySQLStore(options);
 
-const port = process.env.PORT || 5000;
+const port = 5000;
 
 app.set("views", "./src/views");
 app.set("view engine", "ejs");

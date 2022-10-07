@@ -9,3 +9,4 @@ router.post("/hate/:type", ctrl.process.hate);
 
 
 module.exports = router;
+export{}

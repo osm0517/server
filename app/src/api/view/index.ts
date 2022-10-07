@@ -8,3 +8,4 @@ router.get("/:type", ctrl.process.list);
 router.get("/:type/detail", ctrl.process.detail);
 
 module.exports = router;
+export{}
